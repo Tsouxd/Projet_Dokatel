@@ -1,0 +1,373 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
+All colors MUST be HSL.
+*/
+
+@layer base {
+  :root {
+    --background: 240 10% 4%;
+    --foreground: 45 100% 95%;
+
+    --card: 240 8% 8%;
+    --card-foreground: 45 100% 95%;
+
+    --popover: 240 10% 6%;
+    --popover-foreground: 45 100% 95%;
+
+    --primary: 45 100% 60%;
+    --primary-foreground: 240 10% 4%;
+
+    --secondary: 265 75% 55%;
+    --secondary-foreground: 45 100% 95%;
+
+    --muted: 240 8% 15%;
+    --muted-foreground: 45 20% 65%;
+
+    --accent: 45 100% 60%;
+    --accent-foreground: 240 10% 4%;
+
+    --destructive: 0 72% 51%;
+    --destructive-foreground: 45 100% 95%;
+
+    --border: 240 8% 20%;
+    --input: 240 8% 15%;
+    --ring: 45 100% 60%;
+
+    --radius: 0.75rem;
+    
+    /* Custom mystical variables */
+    --mystic-glow: 265 75% 65%;
+    --gold-shine: 45 100% 70%;
+    --cosmic-purple: 265 75% 55%;
+    --shadow-deep: 240 10% 2%;
+    
+    /* Gradients */
+    --gradient-mystic: linear-gradient(135deg, hsl(265 75% 30%), hsl(240 10% 8%));
+    --gradient-gold: linear-gradient(135deg, hsl(45 100% 60%), hsl(35 90% 50%));
+    --gradient-cosmic: linear-gradient(180deg, hsl(265 75% 20%), hsl(240 10% 4%));
+    
+    /* Shadows */
+    --shadow-glow: 0 0 30px hsl(45 100% 60% / 0.3);
+    --shadow-mystic: 0 10px 40px hsl(265 75% 30% / 0.4);
+    --shadow-card: 0 4px 20px hsl(240 10% 2% / 0.5);
+    
+    /* Transitions */
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-bounce: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  }
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&display=swap');
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    background-image: 
+      radial-gradient(circle at 20% 20%, hsl(265 75% 15% / 0.3) 0%, transparent 50%),
+      radial-gradient(circle at 80% 80%, hsl(45 100% 20% / 0.2) 0%, transparent 50%);
+    font-family: 'Inter', sans-serif;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Cinzel', serif;
+  }
+}
+
+/* ============================================
+   STYLES D'IMPRESSION - DESIGN MYSTIQUE ÉLÉGANT
+   ============================================ */
+
+@media print {
+  /* === RÉINITIALISATION GÉNÉRALE === */
+  * {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+    color-adjust: exact !important;
+  }
+
+  /* === CONFIGURATION DE LA PAGE === */
+  @page {
+    size: A4 portrait;
+    margin: 1.5cm 1.5cm 2cm 1.5cm;
+  }
+
+  /* === MASQUER LES ÉLÉMENTS NON IMPRIMABLES === */
+  .no-print,
+  button:not(.print-keep),
+  nav,
+  header:not(.print-header),
+  footer:not(.print-footer) {
+    display: none !important;
+  }
+
+  /* === CORPS DE PAGE === */
+  body {
+    background: white !important;
+    color: #1a1a2e !important;
+    margin: 0;
+    padding: 0;
+    font-size: 11pt;
+    line-height: 1.6;
+  }
+
+  /* === CARTE PRINCIPALE === */
+  .print-content {
+    background: linear-gradient(to bottom, 
+      #f8f5f0 0%, 
+      #ffffff 20%, 
+      #ffffff 80%, 
+      #f8f5f0 100%) !important;
+    border: 3px solid #c9a961 !important;
+    box-shadow: inset 0 0 30px rgba(201, 169, 97, 0.15),
+                0 8px 20px rgba(0, 0, 0, 0.1) !important;
+    padding: 2.5cm 2cm !important;
+    margin: 0 !important;
+    position: relative;
+    page-break-inside: avoid;
+    border-radius: 8px !important;
+  }
+
+  /* === BORDURE DÉCORATIVE MYSTIQUE === */
+  .print-content::before {
+    content: '';
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    right: 10px;
+    bottom: 10px;
+    border: 1px solid #d4af6a;
+    border-radius: 4px;
+    pointer-events: none;
+  }
+
+  /* === MOTIFS DÉCORATIFS DANS LES COINS === */
+  .print-content::after {
+    content: '✦';
+    position: absolute;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 24pt;
+    color: #c9a961;
+    opacity: 0.6;
+  }
+
+  /* === TITRES === */
+  .print-content h2 {
+    color: #8b6914 !important;
+    font-size: 16pt !important;
+    text-align: center;
+    margin-bottom: 0.3cm !important;
+    font-weight: 700 !important;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    border-bottom: 2px solid #c9a961;
+    padding-bottom: 8px;
+  }
+
+  .print-content h3 {
+    color: #2d1b4e !important;
+    font-size: 20pt !important;
+    text-align: center;
+    margin: 0.5cm 0 0.4cm 0 !important;
+    font-weight: 700 !important;
+    letter-spacing: 1px;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  }
+
+  .print-content h4 {
+    color: #4a4a68 !important;
+    font-size: 13pt !important;
+    margin-bottom: 0.3cm !important;
+    font-weight: 600 !important;
+    border-left: 4px solid #c9a961;
+    padding-left: 12px;
+  }
+
+  /* === PARAGRAPHES === */
+  .print-content p {
+    color: #3a3a52 !important;
+    font-size: 11pt !important;
+    line-height: 1.7 !important;
+    margin-bottom: 0.4cm !important;
+    text-align: justify;
+  }
+
+  /* === BADGES / TRAITS === */
+  .print-content [class*="Badge"],
+  .print-content .gap-2 > div {
+    display: inline-block !important;
+    background: linear-gradient(135deg, #f5ebe0 0%, #ebe0d5 100%) !important;
+    border: 1.5px solid #c9a961 !important;
+    color: #5d4e37 !important;
+    padding: 6px 14px !important;
+    margin: 4px !important;
+    border-radius: 20px !important;
+    font-size: 9pt !important;
+    font-weight: 600 !important;
+    letter-spacing: 0.3px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08) !important;
+  }
+
+  /* === SECTION DUALITÉ === */
+  .print-content [class*="bg-secondary/10"] {
+    background: linear-gradient(to right, #f0ebf5 0%, #faf8fc 100%) !important;
+    border: 2px solid #a788c9 !important;
+    border-left: 5px solid #8b6ab8 !important;
+    padding: 0.5cm !important;
+    margin: 0.5cm 0 !important;
+    border-radius: 6px !important;
+    page-break-inside: avoid;
+  }
+
+  /* === GRILLE DES SECTIONS === */
+  .print-content .grid {
+    display: grid !important;
+    grid-template-columns: 1fr 1fr !important;
+    gap: 0.6cm !important;
+    margin: 0.5cm 0 !important;
+    page-break-inside: avoid;
+  }
+
+  /* === BOÎTES D'INFORMATIONS === */
+  .print-content [class*="bg-secondary/5"],
+  .print-content [class*="rounded-lg"] {
+    background: linear-gradient(135deg, #faf9f7 0%, #f5f3f0 100%) !important;
+    border: 1.5px solid #d4c5b0 !important;
+    padding: 0.4cm !important;
+    border-radius: 6px !important;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05) !important;
+    page-break-inside: avoid;
+  }
+
+  /* === LISTES === */
+  .print-content ul {
+    list-style: none !important;
+    padding-left: 0 !important;
+    margin: 0.3cm 0 !important;
+  }
+
+  .print-content ul li {
+    color: #4a4a68 !important;
+    font-size: 10pt !important;
+    line-height: 1.6 !important;
+    margin-bottom: 8px !important;
+    padding-left: 20px !important;
+    position: relative;
+  }
+
+  .print-content ul li::before {
+    content: '◆' !important;
+    position: absolute;
+    left: 0;
+    color: #c9a961 !important;
+    font-size: 10pt;
+  }
+
+  /* === BARRES DE PROGRESSION === */
+  .print-content [class*="h-2"] {
+    height: 8px !important;
+    background: #e8e0d5 !important;
+    border-radius: 4px !important;
+    overflow: hidden;
+    border: 1px solid #d4c5b0 !important;
+  }
+
+  .print-content [class*="bg-primary"] {
+    background: linear-gradient(to right, #c9a961 0%, #8b6914 100%) !important;
+    box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1) !important;
+  }
+
+  .print-content [class*="bg-primary/50"] {
+    background: linear-gradient(to right, #e8dcc0 0%, #c9a961 100%) !important;
+  }
+
+  /* === ICÔNES === */
+  .print-content svg {
+    color: #c9a961 !important;
+    opacity: 0.9 !important;
+  }
+
+  /* === LIGNE DE SÉPARATION === */
+  .print-content [class*="h-1"] {
+    height: 2px !important;
+    background: linear-gradient(to right, 
+      transparent 0%, 
+      #c9a961 50%, 
+      transparent 100%) !important;
+    margin: 0.3cm auto !important;
+  }
+
+  /* === TEXTES EN ITALIQUE === */
+  .print-content .italic {
+    color: #6a5d8a !important;
+    font-style: italic !important;
+    font-size: 10pt !important;
+  }
+
+  /* === EMPÊCHER LES COUPURES DE PAGE === */
+  .print-content > div {
+    page-break-inside: avoid;
+  }
+
+  /* === PIED DE PAGE DÉCORATIF === */
+  .print-content::after {
+    display: none;
+  }
+
+  /* === ESPACEMENT ET MARGES === */
+  .print-content .mb-6 { margin-bottom: 0.4cm !important; }
+  .print-content .mb-8 { margin-bottom: 0.5cm !important; }
+  .print-content .mb-10 { margin-bottom: 0.6cm !important; }
+  .print-content .p-6 { padding: 0.4cm !important; }
+  .print-content .p-8 { padding: 0.5cm !important; }
+
+  /* === OPTIMISATION DES PETITS TEXTES === */
+  .print-content .text-sm,
+  .print-content [class*="text-xs"] {
+    font-size: 9pt !important;
+  }
+
+  /* === GRAS ET EMPHASE === */
+  .print-content strong,
+  .print-content .font-bold {
+    color: #2d1b4e !important;
+    font-weight: 700 !important;
+  }
+
+  /* === SCORES ET CHIFFRES === */
+  .print-content .font-bold[class*="text-xs"] {
+    color: #8b6914 !important;
+    font-weight: 700 !important;
+  }
+
+  /* === ALIGNEMENT DES FLEX === */
+  .print-content .flex {
+    display: flex !important;
+    align-items: center !important;
+  }
+
+  .print-content .flex-wrap {
+    flex-wrap: wrap !important;
+  }
+
+  .print-content .justify-center {
+    justify-content: center !important;
+  }
+
+  .print-content .justify-between {
+    justify-content: space-between !important;
+  }
+
+  /* === ÉTIQUETTE "CAPITALIZE" === */
+  .print-content .capitalize {
+    text-transform: capitalize !important;
+  }
+}
