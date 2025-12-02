@@ -19,8 +19,10 @@ export const AuthForm = () => {
     e.preventDefault();
     setLoading(true);
 
-    const endpoint = isLogin ? "/api/login" : "/api/register";
-    const url = `http://localhost:3000${endpoint}`;
+  const endpoint = isLogin ? "/api/login" : "/api/register";
+  // On récupère l'URL de Render, sinon on garde localhost pour le dev
+  const baseUrl = import.meta.env.VITE_API_URL || "http://localhost:3000";
+  const url = `${baseUrl}${endpoint}`;
 
     try {
         const response = await fetch(url, {

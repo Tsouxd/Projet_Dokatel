@@ -1,7 +1,8 @@
 import { Archetype } from "@/data/quizData";
 
-// URL de ton backend Node
-const API_URL = "http://localhost:3000/api/calculate";
+// On utilise la variable d'environnement ici aussi
+const BASE_URL = import.meta.env.VITE_API_URL || "http://localhost:3000";
+const API_URL = `${BASE_URL}/api/calculate`;
 
 interface BackendResponse {
   archetype_final: string;
